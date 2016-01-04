@@ -1,0 +1,115 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:gravity="center_horizontal"
+android:orientation="vertical"
+android:paddingBottom="@dimen/activity_vertical_margin"
+android:paddingLeft="@dimen/activity_horizontal_margin"
+android:paddingRight="@dimen/activity_horizontal_margin"
+android:paddingTop="@dimen/activity_vertical_margin"
+tools:context="ncrc.nise.ajou.ac.kr.opa.fragment.MyAvatarFragment">
+
+    <TextView
+        android:id="@+id/textViewFinalCalory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="소모해야 할 칼로리"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/textViewFinalCaloryValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="0 kcal"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#00ff00"/>
+
+<TextView
+    android:id="@+id/textViewTitleExerciseRecommender"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="25dp"
+    android:text="@string/titleExerciseRecommender"
+    android:textAppearance="?android:attr/textAppearanceLarge"
+    android:textStyle="bold" />
+
+    <TextView
+    android:id="@+id/textViewTitlePlace"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="25dp"
+    android:text="@string/titlePlace"
+    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <RadioGroup
+        android:id="@+id/radiogroupPlace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radioButtonInside"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="@string/inside" />
+
+        <RadioButton
+            android:id="@+id/radioButtonOutside"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:checked="false"
+            android:text="@string/outside" />
+    </RadioGroup>
+
+
+    <TextView
+        android:id="@+id/textViewTitleStrength"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="@string/titleStrength"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <RadioGroup
+        android:id="@+id/radiogroupStrength"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radioButtonWeak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="@string/weak" />
+
+        <RadioButton
+            android:id="@+id/radioButtonMiddle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:checked="false"
+            android:text="@string/middle" />
+        <RadioButton
+            android:id="@+id/radioButtonStrong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:checked="false"
+            android:text="@string/strong" />
+    </RadioGroup>
+
+<Button
+    android:id="@+id/buttonResult"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="25dp"
+    android:text="@string/titleResult" />
+</LinearLayout>
