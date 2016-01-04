@@ -154,7 +154,7 @@ public class ItemlistDailyActivity extends ActionBarActivity {
                         //Toast.makeText(getApplicationContext(),items[which]+"를 선택했습니다.",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(ItemlistDailyActivity.this, ItemAddActivity.class);
                         intent.putExtra("foodType", selectedFoodType);
-                        startActivity(intent);
+                        startActivityForResult(intent, 1);
                         Log.i("dialog", which + "");
                     }
                 });
@@ -226,6 +226,21 @@ public class ItemlistDailyActivity extends ActionBarActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == 1) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+
+                // The user picked a contact.
+                // The Intent's data Uri identifies which contact was selected.
+
+                // Do something with the contact here (bigger example below)
+            }
+        }
     }
 
     @Override
