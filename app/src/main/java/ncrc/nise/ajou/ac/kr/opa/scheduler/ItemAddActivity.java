@@ -42,16 +42,23 @@ public class ItemAddActivity extends ActionBarActivity {
         Intent intent = getIntent();
         final String foodType = intent.getExtras().getString("foodType");
 
-        ArrayList<String> foods = new ArrayList<String>();
+        final ArrayList<String> foods = new ArrayList<String>();
         foods.add("김밥");
         foods.add("떡만두국");
         foods.add("순두부찌개");
         foods.add("쫄면");
         foods.add("비빔밥");
 
+        final ArrayList<String> foodCalory = new ArrayList<String>();
+        foodCalory.add("300");
+        foodCalory.add("350");
+        foodCalory.add("400");
+        foodCalory.add("600");
+        foodCalory.add("300");
+
         itemAddView = (ListView) findViewById(R.id.itemAddView);
 
-        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, datas);
+        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, foods);
         itemAddView.setAdapter(arrayAdapter);
 
         itemAddView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -59,9 +66,9 @@ public class ItemAddActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 Intent returnIntent = new Intent();
                 returnIntent.putExtra("result",foods.get(position));
-                setResult(Activity.RESULT_OK,returnIntent);
+                returnIntent.putExtra("resultCalory",foodCalory.get(position));
+                setResult(ItemAddActivity.RESULT_OK,returnIntent);
                 finish();
-
             }
         });
 

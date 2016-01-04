@@ -32,6 +32,7 @@
             android:name=".scheduler.SchedulerDailyActivity"
             android:label="@string/title_scheduler_daily" />
         <activity android:name=".scheduler.ItemlistDailyActivity" />
+        <activity android:name=".scheduler.ItemAddActivity"/>
         <activity android:name=".recommender.RecommendedExercisesActivity" />
 
         <service android:name=".service.PersistentService">

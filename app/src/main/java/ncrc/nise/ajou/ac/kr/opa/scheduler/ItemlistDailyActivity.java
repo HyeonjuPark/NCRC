@@ -40,6 +40,8 @@ public class ItemlistDailyActivity extends ActionBarActivity {
     private ArrayAdapter<String> arrayAdapter;
     private TextView textViewItemlistTitle;
     private int selectedFoodType;
+    private String currDate="";
+    private String type="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +52,8 @@ public class ItemlistDailyActivity extends ActionBarActivity {
 
         // 인텐트로 날짜 string 받기 ex) 2015-12-30
         Intent intent = getIntent();
-        final String currDate = intent.getExtras().getString("currDate");
-        final String type = intent.getExtras().getString("type");
+        currDate = intent.getExtras().getString("currDate");
+        type = intent.getExtras().getString("type");
 
         Log.i("type", type);
 
@@ -152,10 +154,11 @@ public class ItemlistDailyActivity extends ActionBarActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //Toast.makeText(getApplicationContext(),items[which]+"를 선택했습니다.",Toast.LENGTH_SHORT).show();
+                        Log.i("dialog", selectedFoodType + "");
                         Intent intent = new Intent(ItemlistDailyActivity.this, ItemAddActivity.class);
-                        intent.putExtra("foodType", selectedFoodType);
+                        intent.putExtra("foodType", items[selectedFoodType]);
                         startActivityForResult(intent, 1);
-                        Log.i("dialog", which + "");
+
                     }
                 });
                 ab.setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -234,7 +237,17 @@ public class ItemlistDailyActivity extends ActionBarActivity {
         if (requestCode == 1) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
+                //foodname
+                String result=data.getStringExtra("result");
+                //calory
+                String resultC=data.getStringExtra("resultCalory");
+                // 리스트 추가하기
+                datas.add(result + " (" + resultC + ")");
 
+                // db 저장
+                dbAdapter.insertDailyFood(currDate, type, result, Double.parseDouble(resultC));
+                Log.i("dailyfood", currDate + "," + type + "," + result + "," + Double.parseDouble(resultC));
+                arrayAdapter.notifyDataSetChanged();
                 // The user picked a contact.
                 // The Intent's data Uri identifies which contact was selected.
 
