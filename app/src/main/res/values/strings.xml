@@ -54,4 +54,7 @@
     <string name="middle">중</string>
     <string name="strong">강</string>
     <string name="titleResult">결과 보기</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
