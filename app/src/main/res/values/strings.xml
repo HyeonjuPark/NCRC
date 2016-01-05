@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <resources>
     <string name="app_name">OPA</string>
 
@@ -55,3 +56,65 @@
     <string name="strong">강</string>
     <string name="titleResult">결과 보기</string>
 </resources>
+=======
+<resources>
+    <string name="app_name">OPA</string>
+
+    <string name="title_section1">내 아바타</string>
+    <string name="title_section2">스케줄러</string>
+    <string name="title_section3">운동 추천</string>
+    <string name="title_section4">만보계</string>
+
+    <string name="height">키</string>
+    <string name="weight">체중</string>
+    <string name="age">연령</string>
+    <string name="sex">성별</string>
+    <string name="male">남성</string>
+    <string name="female">여성</string>
+    <string name="submit">확    인</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!--
+    <string name="action_example"></string>
+    -->
+
+    <string name="action_settings">사용자 설정</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_act_recommender_fragment">Hello hello_act_recommender_fragment fragment</string>
+    <string name="title_activity_user_settings">사용자 설정</string>
+    <string name="title_scheduler_daily">날짜별 현황</string>
+
+    <string name="hello_world">Hello world!</string>
+
+    <!-- MyAvatar -->
+    <string name="my_bmi">BMI</string>
+    <string name="my_obesity_status">비만 상태</string>
+    <string name="my_daily_bmr">일일 기초 대사량</string>
+
+    <!-- 만보 -->
+    <string name="manbo_initial">0</string>
+    <string name="manbo_start">만보계 시작</string>
+
+    <!-- 스케쥴러 -->
+    <string name="prev_month">&lt;</string>
+    <string name="next_month">&gt;</string>
+    <string name="title_activity_schedule_daily">ScheduleDailyActivity</string>
+
+    <!-- 운동 추천 -->
+    <string name="titleExerciseRecommender">운동 추천</string>
+    <string name="titlePlace">장소</string>
+    <string name="inside">실내</string>
+    <string name="outside">실외</string>
+    <string name="titleStrength">강도</string>
+    <string name="weak">약</string>
+    <string name="middle">중</string>
+    <string name="strong">강</string>
+    <string name="titleResult">결과 보기</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
+>>>>>>> bf99e8ae389078f38b4ce924a28bad8d2e7f03d2
