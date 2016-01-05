@@ -42,6 +42,7 @@ public class ItemlistDailyActivity extends ActionBarActivity {
     private int selectedFoodType;
     private String currDate="";
     private String type="";
+    private String foodType="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,14 +137,16 @@ public class ItemlistDailyActivity extends ActionBarActivity {
                                 switch (whichButton) {
                                     case 0:
                                         //type
-                                        selectedFoodType=0;
+                                        foodType = "korean";
                                         break;
                                     case 1:
-                                        selectedFoodType=1;
+                                        foodType = "chinese";
                                         break;
                                     case 2:
-                                        selectedFoodType=2;
+                                        foodType = "japanese";
                                         break;
+                                    case 3:
+                                        foodType = "western";
                                     default:
                                         break;
                                 }
@@ -154,10 +157,14 @@ public class ItemlistDailyActivity extends ActionBarActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //Toast.makeText(getApplicationContext(),items[which]+"를 선택했습니다.",Toast.LENGTH_SHORT).show();
-                        Log.i("dialog", selectedFoodType + "");
+                        Log.i("dialog", foodType + "");
+
                         Intent intent = new Intent(ItemlistDailyActivity.this, ItemAddActivity.class);
-                        intent.putExtra("foodType", items[selectedFoodType]);
-                        startActivityForResult(intent, 1);
+                        intent.putExtra("currDate", currDate);
+                        intent.putExtra("type", type); // 아침 점심 저녁
+                        intent.putExtra("foodType", foodType); // 한식 중식 ...
+
+                        startActivity(intent);
 
                     }
                 });
@@ -259,6 +266,28 @@ public class ItemlistDailyActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        datas.clear();
+        if(type.equals("breakfast") || type.equals("lunch") || type.equals("dinner")) {
+            Cursor c = dbAdapter.readDailyFood(currDate, type);
+            try {
+                if(c.getCount() > 0) {
+                    while(c.moveToNext()) {
+                        datas.add(c.getString(1) + " (" + c.getString(2) + ")");
+                    }
+                } else {
+
+                }
+            } finally {
+                c.close();
+            }
+        } else if(type == "exercise") {
+
+        } else {
+
+        }
+
+
         arrayAdapter.notifyDataSetChanged();
     }
 }
