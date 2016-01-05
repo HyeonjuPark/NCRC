@@ -38,7 +38,7 @@ public class ManboFragment extends Fragment {
     // service data
     String serviceDataWalk;
     String serviceDataRun;
-    String serviceDataStairs;
+    //String serviceDataStairs;
 
     // 리시버
     BroadcastReceiver receiverWalk;
@@ -51,7 +51,7 @@ public class ManboFragment extends Fragment {
     private TextView stairsCount;
 
     private Button buttonRun;
-    private Button buttonStairs;
+    //private Button buttonStairs;
     private Button buttonWalk;
     private Button buttonReset;
     private User user;
@@ -88,7 +88,7 @@ public class ManboFragment extends Fragment {
         // Textview 설정
         walkCount = (TextView) rootView.findViewById(R.id.stepCount);
         runCount = (TextView) rootView.findViewById(R.id.runCount);
-        stairsCount = (TextView)rootView.findViewById(R.id.stairsCount);
+        //stairsCount = (TextView)rootView.findViewById(R.id.stairsCount);
 
         if(c != null) {
             if(c.getCount() != 0) {
@@ -103,24 +103,24 @@ public class ManboFragment extends Fragment {
 
         walkCount.setText("0 걸음, 0 kcal.");
         runCount.setText(" 0 뜀, 0 kcal.");
-        stairsCount.setText("0 오름, 0 kcal.");
+        //stairsCount.setText("0 오름, 0 kcal.");
 
 
         // Button 설정
         buttonRun = (Button)rootView.findViewById(R.id.buttonRun);
-        buttonStairs = (Button)rootView.findViewById(R.id.buttonStairs);
+        //buttonStairs = (Button)rootView.findViewById(R.id.buttonStairs);
         buttonWalk = (Button)rootView.findViewById(R.id.buttonWalk);
         buttonReset = (Button)rootView.findViewById(R.id.buttonReset);
 
         buttonRun.setOnClickListener(mClickListener);
-        buttonStairs.setOnClickListener(mClickListener);
+        //buttonStairs.setOnClickListener(mClickListener);
         buttonWalk.setOnClickListener(mClickListener);
         buttonReset.setOnClickListener(mClickListener);
 
         // 리시버 생성
         receiverWalk = new MyMainLocalReceiver("serviceDataWalk");
         receiverRun = new MyMainLocalReceiver("serviceDataRun");
-        receiverStairs = new MyMainLocalReceiver("serviceDataStairs");
+        //receiverStairs = new MyMainLocalReceiver("serviceDataStairs");
 
         try {
             IntentFilter mainFilterWalk = new IntentFilter("ncrc.nise.ajou.ac.kr.opa.step");
@@ -129,8 +129,10 @@ public class ManboFragment extends Fragment {
             IntentFilter mainFilterRun = new IntentFilter("ncrc.nise.ajou.ac.kr.opa.run");
             getActivity().registerReceiver(receiverRun, mainFilterRun);
 
+            /*
             IntentFilter mainFilterStairs = new IntentFilter("ncrc.nise.ajou.ac.kr.opa.stairs");
             getActivity().registerReceiver(receiverStairs, mainFilterStairs);
+            */
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -168,6 +170,7 @@ public class ManboFragment extends Fragment {
                     Toast.makeText(getActivity(), "뛰기 조정 : " + ManboValues.RUN_THRESHOLD, Toast.LENGTH_LONG).show();
 
                     break;
+                /*
                 case R.id.buttonStairs:
                     for (int i = 0; i < TIME; i++) {
                         while((currentTime - lastTime) < 100) { // 0.1초마다
@@ -185,6 +188,7 @@ public class ManboFragment extends Fragment {
                     ManboValues.STAIRS_THRESHOLD = (int)((ManboValues.STAIRS_THRESHOLD * 0.9) + (max * 0.1));
                     Toast.makeText(getActivity(), "계단오르기 조정 : " + ManboValues.RUN_THRESHOLD, Toast.LENGTH_LONG).show();
                     break;
+                    */
                 case R.id.buttonWalk:
                     for (int i = 0; i < TIME; i++) {
                         while((currentTime - lastTime) < 100) { // 0.1초마다
@@ -205,8 +209,8 @@ public class ManboFragment extends Fragment {
                 case R.id.buttonReset:
                     ManboValues.WALK_THRESHOLD = 800;
                     ManboValues.RUN_THRESHOLD = 1200;
-                    ManboValues.STAIRS_THRESHOLD = 3000;
-                    Toast.makeText(getActivity(), "초기화 : 걷기-" + ManboValues.WALK_THRESHOLD +", 뛰기-" + ManboValues.RUN_THRESHOLD + ", 계단오르기-" + ManboValues.STAIRS_THRESHOLD, Toast.LENGTH_LONG).show();
+                    //ManboValues.STAIRS_THRESHOLD = 3000;
+                    Toast.makeText(getActivity(), "초기화 : 걷기-" + ManboValues.WALK_THRESHOLD +", 뛰기-" + ManboValues.RUN_THRESHOLD, Toast.LENGTH_LONG).show();
                     break;
             }
         }
@@ -238,12 +242,12 @@ public class ManboFragment extends Fragment {
                 runCount.setText(serviceDataRun + " 뜀, " + (int)(0.00016 * Float.parseFloat(serviceDataRun) * user.getWeight()) + " kcal.");
 
                 Log.i(TAG, "serviceDataRun received: " + serviceDataRun);
-            } else if (datatype.equals("serviceDataStairs")) {
+            } /*else if (datatype.equals("serviceDataStairs")) {
                 serviceDataStairs = intent.getStringExtra(datatype);
                 stairsCount.setText(serviceDataStairs + "오름, "+ (int)(0.00023 * Float.parseFloat(serviceDataStairs) * user.getWeight()) + " kcal.");
 
                 Log.i(TAG, "serviceDataStairs received: " + serviceDataStairs);
-            }
+            }*/
         }
     }
 

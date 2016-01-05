@@ -47,7 +47,7 @@ public class DBHelper extends SQLiteOpenHelper {
             // Create TABLE_DAILY_MANBO
             db.execSQL("create table daily_manbo (" +
                     "_id integer primary key autoincrement, " +
-                    "date TEXT, manbo integer);");
+                    "date TEXT, manbo integer, run integer);");
 
             // Create TABLE_DAILY_FOOD
             db.execSQL("create table daily_food (" +
@@ -86,11 +86,11 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     // insert data into table TABLE_DAILY_MANBO
-    public void insert(String date, int manbo) {
+    public void insert(String date, int manbo, int run) {
         ContentValues values = new ContentValues();
         values.put("date", date);
         values.put("manbo", manbo);
-
+        values.put("run", run);
         db = getWritableDatabase();
         db.insert(TABLE_DAILY_MANBO, null, values);
     }
@@ -104,10 +104,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db = getWritableDatabase();
         db.insert(TABLE_DAILY_FOOD, null, values);
-    }
-
-    public void updateManbo(String date, int manbo) {
-        db.execSQL("UPDATE " + TABLE_DAILY_MANBO + " SET manbo = '" + manbo + "' WHERE date = '" + date + "';");
     }
 
     public void deleteDailyFood(int id) {
