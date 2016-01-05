@@ -23,8 +23,6 @@
 
     <string name="action_settings">사용자 설정</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_act_recommender_fragment">Hello hello_act_recommender_fragment fragment</string>
     <string name="title_activity_user_settings">사용자 설정</string>
     <string name="title_scheduler_daily">날짜별 현황</string>
 
@@ -55,6 +53,4 @@
     <string name="strong">강</string>
     <string name="titleResult">결과 보기</string>
 
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

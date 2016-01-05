@@ -89,9 +89,13 @@ public class DBAdapter {
       //return db.rawQuery("SELECT * FROM " + tableNameScheduler + " WHERE date = ?",new String[]{"data"});
     }
 
-    public void updateManbo(String date, int manbo) {
-        Log.i("service", "update : " + Integer.toString(manbo));
-                db.execSQL("UPDATE " + TABLE_DAILY_MANBO + " SET manbo = '" + manbo + "' WHERE date = '" + date + "';");
+    public void updateManbo(String date, int manbo, int run) {
+        try {
+            db.execSQL("UPDATE " + TABLE_DAILY_MANBO + " SET manbo = '" + manbo + "', run = '" + run + "' WHERE date = '" + date + "';");
+            Log.i("DBAdapter", "manbo and run is inserted to DB");
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /* Read User Info */

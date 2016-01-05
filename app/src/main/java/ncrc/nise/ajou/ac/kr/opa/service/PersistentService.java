@@ -39,7 +39,7 @@ public class PersistentService extends Service implements Runnable, SensorEventL
 
 
     private float speed; // 가속도 speed
-    private float stairsGap; // 걷기 X축 - Z축 사이 gap
+    //private float stairsGap; // 걷기 X축 - Z축 사이 gap
 
     private long lastTime; // 이전 Time
 
@@ -90,7 +90,8 @@ public class PersistentService extends Service implements Runnable, SensorEventL
             c = dbAdapter.readManbo(getTodayDate());
         } else { // 데이터가 있을 경우
             c.moveToFirst();
-            ManboValues.Step = c.getInt(2); // 만보 숫자를 읽어 Step에 저장
+            ManboValues.Step = c.getInt(2); // Manbo 숫자를 읽어 Step에 저장
+            ManboValues.Run = c.getInt(3); // Run 숫자를 읽어 Step에 저장
         }
 
         // Sensor 설정
@@ -144,9 +145,9 @@ public class PersistentService extends Service implements Runnable, SensorEventL
     public void run()
     { //running 중인 상태에서 지속적으로 확인(실행)하는 코드
 
-        // 만보 DB에 업데이트
-        dbAdapter.updateManbo(getTodayDate(), ManboValues.Step);
-        Log.i(TAG, "Updating Manbo : " + Integer.toString(ManboValues.Step));
+        // 만보, run DB에 업데이트
+        dbAdapter.updateManbo(getTodayDate(), ManboValues.Step, ManboValues.Run);
+        Log.i(TAG, "Updating Manbo : " + ManboValues.Step + ", Run : " + ManboValues.Run);
 
         if(!mIsRunning)  //서비스가 실행되고 있지 않다면
         {
@@ -189,7 +190,6 @@ public class PersistentService extends Service implements Runnable, SensorEventL
             // 현재 시간 가져오기
             long currentTime = System.currentTimeMillis();
 
-
             long gabOfTime = (currentTime - lastTime);
 
             if(gabOfTime > 100) { // 100ms에 한 번
@@ -204,11 +204,11 @@ public class PersistentService extends Service implements Runnable, SensorEventL
                 // X,Y,Z축의 (현재 값-이전 값) 합의 절대값을 threshold로 사용하여
                 // 현재 speed와 stairsGap을 구함.
                 speed = Math.abs(x+y+z-lastX-lastY-lastZ) / gabOfTime * 10000;
-                stairsGap = Math.abs(2*(z-lastZ)-(x-lastZ)-(y-lastZ)) / gabOfTime * 10000;
+                //stairsGap = Math.abs(2*(z-lastZ)-(x-lastZ)-(y-lastZ)) / gabOfTime * 10000;
 
                 // 현재 Speed, StairsGap 업데이트
                 ManboValues.Speed = speed;
-                ManboValues.StairsGap = stairsGap;
+                //ManboValues.StairsGap = stairsGap;
 
                 if(speed > ManboValues.RUN_THRESHOLD) { // speed가 RUN_THRESHOLD 이상이면
                     // Run +1 증가
@@ -221,7 +221,7 @@ public class PersistentService extends Service implements Runnable, SensorEventL
 
                     Log.i(TAG, "User is running : " + ManboValues.Run + " runs");
                 } else if(speed > ManboValues.WALK_THRESHOLD) { // Walk
-                    if(stairsGap < ManboValues.STAIRS_THRESHOLD) { // Walking
+                    //if(stairsGap < ManboValues.STAIRS_THRESHOLD) { // Walking
                         // Step +1 증가
                         ManboValues.Step++;
 
@@ -231,17 +231,17 @@ public class PersistentService extends Service implements Runnable, SensorEventL
                         sendBroadcast(myFilteredResponse);
 
                         Log.i(TAG, "User is walking : " + ManboValues.Step + " steps");
-                    }  else { // Upstairs
+                    //}  else { // Upstairs
                         // Upstairs +1 증가
-                        ManboValues.Upstairs++;
+                        //ManboValues.Upstairs++;
 
                         // serviceDataStairs intent로 upstairs 수 보내기
-                        Intent myFilteredResponse = new Intent("ncrc.nise.ajou.ac.kr.opa.stairs");
-                        myFilteredResponse.putExtra("serviceDataStairs", ManboValues.Upstairs + "");
-                        sendBroadcast(myFilteredResponse);
+                        //Intent myFilteredResponse = new Intent("ncrc.nise.ajou.ac.kr.opa.stairs");
+                        //myFilteredResponse.putExtra("serviceDataStairs", ManboValues.Upstairs + "");
+                        //sendBroadcast(myFilteredResponse);
 
-                        Log.i(TAG, "User is going upstairs : " + ManboValues.Upstairs + " stairs");
-                    }
+                        //Log.i(TAG, "User is going upstairs : " + ManboValues.Upstairs + " stairs");
+                    //}
                 } else {
                 }
 
