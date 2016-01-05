@@ -77,7 +77,7 @@ public class DBAdapter {
 
     public Cursor readManbo(String date) {
         Cursor c = db.query(TABLE_DAILY_MANBO, //table name
-                new String[] {"_id","date","manbo"}, //colum 명세
+                new String[] {"_id","date","manbo", "run"}, //colum 명세
                 "date = ?", //where
                 new String[] {date}, //where 절에 전달할 데이터
                 null, //group by
