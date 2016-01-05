@@ -40,7 +40,6 @@
                 <action android:name="ncrc.nise.ajou.ac.kr.opa.persistent" />
                 <action android:name="ncrc.nise.ajou.ac.kr.opa.step" />
                 <action android:name="ncrc.nise.ajou.ac.kr.opa.run" />
-                <action android:name="ncrc.nise.ajou.ac.kr.opa.stairs" />
             </intent-filter>
         </service>
 
