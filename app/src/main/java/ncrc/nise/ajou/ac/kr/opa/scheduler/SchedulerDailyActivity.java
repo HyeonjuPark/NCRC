@@ -119,5 +119,19 @@ public class SchedulerDailyActivity extends ActionBarActivity {
             c.moveToFirst();
             textViewBreakfast.setText("아침 식사 : " + c.getInt(0) + " kcal");
         }
+
+        c = dbAdapter.sumDailyFoodKcal(currDate, "lunch");
+        if(c.getCount() > 0) {
+            c.moveToFirst();
+            textViewLunch.setText("점심 식사 : " + c.getDouble(0) + " kcal");
+        }
+
+        textViewDinner = (TextView)findViewById(R.id.textViewDinner);
+        c = dbAdapter.sumDailyFoodKcal(currDate, "dinner");
+        if(c.getCount() > 0) {
+            c.moveToFirst();
+            textViewDinner.setText("저녁 식사 : " + c.getDouble(0) + " kcal");
+        }
+
     }
 }
